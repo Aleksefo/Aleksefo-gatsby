@@ -1,5 +1,6 @@
-# Gatsby Starter: Mate
+# My portfolio website
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/7c629edb-9368-41a6-aa50-55bf61df185a/deploy-status)](https://app.netlify.com/sites/aleksefo/deploys)
 [![Travis badge](https://api.travis-ci.org/EmaSuriano/gatsby-starter-mate.svg)](https://travis-ci.org/EmaSuriano/gatsby-starter-mate)
 [![eslint](https://img.shields.io/badge/eslint-enabled-green.svg)](https://eslint.org/)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
