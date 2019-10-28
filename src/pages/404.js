@@ -1,8 +1,8 @@
-import React from 'react';
-import { Heading, Box } from 'rebass';
-import Layout from '../components/Layout';
-import Section from '../components/Section';
-import Triangle from '../components/Triangle';
+import React from 'react'
+import { Heading, Box } from 'rebass'
+import Layout from '../components/Layout'
+import Section from '../components/Section'
+import Triangle from '../components/Triangle'
 
 const Background = () => (
   <div>
@@ -27,7 +27,7 @@ const Background = () => (
       invertY
     />
   </div>
-);
+)
 
 const NotFoundPage = () => (
   <Layout>
@@ -46,6 +46,6 @@ const NotFoundPage = () => (
       </Box>
     </Section.Container>
   </Layout>
-);
+)
 
-export default NotFoundPage;
+export default NotFoundPage
