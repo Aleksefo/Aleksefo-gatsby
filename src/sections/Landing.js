@@ -1,12 +1,12 @@
-import React, { Fragment } from 'react';
-import { StaticQuery, graphql } from 'gatsby';
-import { Heading, Flex, Box, Text } from 'rebass';
-import TextLoop from 'react-text-loop';
-import { SectionLink } from 'react-scroll-section';
-import Section from '../components/Section';
-import SocialLink from '../components/SocialLink';
-import MouseIcon from '../components/MouseIcon';
-import Triangle from '../components/Triangle';
+import React, { Fragment } from 'react'
+import { StaticQuery, graphql } from 'gatsby'
+import { Heading, Flex, Box, Text } from 'rebass'
+import TextLoop from 'react-text-loop'
+import { SectionLink } from 'react-scroll-section'
+import Section from '../components/Section'
+import SocialLink from '../components/SocialLink'
+import MouseIcon from '../components/MouseIcon'
+import Triangle from '../components/Triangle'
 
 const Background = () => (
   <div>
@@ -37,9 +37,9 @@ const Background = () => (
       invertY
     />
   </div>
-);
+)
 
-const centerHorizontally = { marginRight: 'auto', marginLeft: 'auto' };
+const centerHorizontally = { marginRight: 'auto', marginLeft: 'auto' }
 
 const LandingPage = () => (
   <Section.Container id="home" Background={Background}>
@@ -64,8 +64,8 @@ const LandingPage = () => (
         }
       `}
       render={({ contentfulAbout, site }) => {
-        const { name, socialLinks, roles } = contentfulAbout;
-        const { deterministicBehaviour } = site.siteMetadata;
+        const { name, socialLinks, roles } = contentfulAbout
+        const { deterministicBehaviour } = site.siteMetadata
 
         return (
           <Fragment>
@@ -109,10 +109,10 @@ const LandingPage = () => (
               {({ onClick }) => <MouseIcon onClick={onClick} />}
             </SectionLink>
           </Fragment>
-        );
+        )
       }}
     />
   </Section.Container>
-);
+)
 
-export default LandingPage;
+export default LandingPage

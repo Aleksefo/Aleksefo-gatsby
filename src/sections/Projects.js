@@ -1,15 +1,15 @@
-import React from 'react';
-import PropTypes from 'prop-types';
-import { Image, Text, Flex, Box } from 'rebass';
-import { StaticQuery, graphql } from 'gatsby';
-import styled from 'styled-components';
-import Fade from 'react-reveal/Fade';
-import Section from '../components/Section';
-import { CardContainer, Card } from '../components/Card';
-import SocialLink from '../components/SocialLink';
-import Triangle from '../components/Triangle';
-import ImageSubtitle from '../components/ImageSubtitle';
-import Hide from '../components/Hide';
+import React from 'react'
+import PropTypes from 'prop-types'
+import { Image, Text, Flex, Box } from 'rebass'
+import { StaticQuery, graphql } from 'gatsby'
+import styled from 'styled-components'
+import Fade from 'react-reveal/Fade'
+import Section from '../components/Section'
+import { CardContainer, Card } from '../components/Card'
+import SocialLink from '../components/SocialLink'
+import Triangle from '../components/Triangle'
+import ImageSubtitle from '../components/ImageSubtitle'
+import Hide from '../components/Hide'
 
 const Background = () => (
   <div>
@@ -42,11 +42,11 @@ const Background = () => (
       invertY
     />
   </div>
-);
+)
 
-const CARD_HEIGHT = '200px';
+const CARD_HEIGHT = '200px'
 
-const MEDIA_QUERY_SMALL = '@media (max-width: 400px)';
+const MEDIA_QUERY_SMALL = '@media (max-width: 400px)'
 
 const Title = styled(Text)`
   font-size: 14px;
@@ -54,7 +54,7 @@ const Title = styled(Text)`
   text-transform: uppercase;
   display: table;
   border-bottom: ${props => props.theme.colors.primary} 5px solid;
-`;
+`
 
 const TextContainer = styled.div`
   display: flex;
@@ -66,7 +66,7 @@ const TextContainer = styled.div`
   ${MEDIA_QUERY_SMALL} {
     width: calc(100% - (${CARD_HEIGHT} / 2));
   }
-`;
+`
 
 const ImageContainer = styled.div`
   margin: auto;
@@ -75,7 +75,7 @@ const ImageContainer = styled.div`
   ${MEDIA_QUERY_SMALL} {
     width: calc(${CARD_HEIGHT} / 2);
   }
-`;
+`
 
 const ProjectImage = styled(Image)`
   width: ${CARD_HEIGHT};
@@ -89,7 +89,7 @@ const ProjectImage = styled(Image)`
     margin-top: calc(${CARD_HEIGHT} / 4);
     padding: 10px;
   }
-`;
+`
 
 const ProjectTag = styled.div`
   position: relative;
@@ -101,7 +101,7 @@ const ProjectTag = styled.div`
   ${MEDIA_QUERY_SMALL} {
     top: calc(-${CARD_HEIGHT} - 3.5px + (${CARD_HEIGHT} / 4));
   }
-`;
+`
 
 const Project = ({
   name,
@@ -158,7 +158,7 @@ const Project = ({
       </ImageContainer>
     </Flex>
   </Card>
-);
+)
 
 Project.propTypes = {
   name: PropTypes.string.isRequired,
@@ -173,7 +173,7 @@ Project.propTypes = {
     }),
     title: PropTypes.string,
   }).isRequired,
-};
+}
 
 const Projects = () => (
   <Section.Container id="projects" Background={Background}>
@@ -211,6 +211,6 @@ const Projects = () => (
       )}
     />
   </Section.Container>
-);
+)
 
-export default Projects;
+export default Projects

@@ -1,12 +1,12 @@
-import React from 'react';
-import { Box, Image, Flex } from 'rebass';
-import { StaticQuery, graphql } from 'gatsby';
-import styled from 'styled-components';
-import ReactMarkdown from 'react-markdown';
-import Fade from 'react-reveal/Fade';
-import Section from '../components/Section';
-import Triangle from '../components/Triangle';
-import markdownRenderer from '../components/MarkdownRenderer';
+import React from 'react'
+import { Box, Image, Flex } from 'rebass'
+import { StaticQuery, graphql } from 'gatsby'
+import styled from 'styled-components'
+import ReactMarkdown from 'react-markdown'
+import Fade from 'react-reveal/Fade'
+import Section from '../components/Section'
+import Triangle from '../components/Triangle'
+import markdownRenderer from '../components/MarkdownRenderer'
 
 const Background = () => (
   <div>
@@ -30,7 +30,7 @@ const Background = () => (
       width={['100vw', '100vw']}
     />
   </div>
-);
+)
 
 const ProfilePicture = styled(Image)`
   border-radius: 50%;
@@ -39,7 +39,7 @@ const ProfilePicture = styled(Image)`
   &:hover {
     border-radius: 20%;
   }
-`;
+`
 
 const About = () => (
   <Section.Container id="about" Background={Background}>
@@ -63,7 +63,7 @@ const About = () => (
         }
       `}
       render={data => {
-        const { aboutMe, profile } = data.contentfulAbout;
+        const { aboutMe, profile } = data.contentfulAbout
         return (
           <Flex justifyContent="center" alignItems="center" flexWrap="wrap">
             <Box width={[1, 1, 4 / 6]} px={[1, 2, 4]}>
@@ -89,10 +89,10 @@ const About = () => (
               </Fade>
             </Box>
           </Flex>
-        );
+        )
       }}
     />
   </Section.Container>
-);
+)
 
-export default About;
+export default About

@@ -9,4 +9,4 @@ module.exports = {
   secondary: '#ff4081',
   secondaryLight: '#ff79b0',
   secondaryDark: '#c60055',
-};
+}

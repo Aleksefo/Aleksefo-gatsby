@@ -1,8 +1,8 @@
-import React from 'react';
-import ReactHelmet from 'react-helmet';
-import { StaticQuery, graphql } from 'gatsby';
-import { withTheme } from 'styled-components';
-import PropTypes from 'prop-types';
+import React from 'react'
+import ReactHelmet from 'react-helmet'
+import { StaticQuery, graphql } from 'gatsby'
+import { withTheme } from 'styled-components'
+import PropTypes from 'prop-types'
 
 const Helmet = ({ theme = {} }) => (
   <StaticQuery
@@ -29,8 +29,8 @@ const Helmet = ({ theme = {} }) => (
       }
     `}
     render={data => {
-      const { name, description, profile } = data.contentfulAbout;
-      const title = `${name} Portfolio`;
+      const { name, description, profile } = data.contentfulAbout
+      const title = `${name} Portfolio`
 
       return (
         <ReactHelmet htmlAttributes={{ lang: 'en' }}>
@@ -75,14 +75,14 @@ const Helmet = ({ theme = {} }) => (
             href={`https:${profile.favicon16.src}`}
           />
         </ReactHelmet>
-      );
+      )
     }}
   />
-);
+)
 
 Helmet.propTypes = {
   // eslint-disable-next-line
   theme: PropTypes.object,
-};
+}
 
-export default withTheme(Helmet);
+export default withTheme(Helmet)

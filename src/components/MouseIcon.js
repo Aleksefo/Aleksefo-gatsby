@@ -1,12 +1,12 @@
-import React from 'react';
-import styled, { keyframes } from 'styled-components';
-import PropTypes from 'prop-types';
+import React from 'react'
+import styled, { keyframes } from 'styled-components'
+import PropTypes from 'prop-types'
 
 const MouseContainer = styled.svg`
   max-width: 2.5rem;
   width: 100%;
   height: auto;
-`;
+`
 
 const ScrollLink = styled.span`
   position: absolute;
@@ -18,7 +18,7 @@ const ScrollLink = styled.span`
   @media only screen and (max-width: 700px) {
     display: none;
   }
-`;
+`
 
 const ScrollAnimation = keyframes`
   0%,
@@ -34,12 +34,12 @@ const ScrollAnimation = keyframes`
     transform: translateY(36px) scaleY(2);
     opacity: 0.01;
   }
-`;
+`
 
 const Mouse = styled.rect.attrs(props => ({
   stroke: props.theme.colors.primary,
   strokeWidth: '3',
-}))``;
+}))``
 
 const Scroll = styled.circle`
   animation-name: ${ScrollAnimation};
@@ -49,7 +49,7 @@ const Scroll = styled.circle`
   transform-origin: 50% 20.5px;
   will-change: transform;
   fill: ${props => props.theme.colors.primary};
-`;
+`
 
 const MouseIcon = ({ onClick }) => (
   <ScrollLink onClick={onClick}>
@@ -60,10 +60,10 @@ const MouseIcon = ({ onClick }) => (
       </g>
     </MouseContainer>
   </ScrollLink>
-);
+)
 
 MouseIcon.propTypes = {
   onClick: PropTypes.func,
-};
+}
 
-export default MouseIcon;
+export default MouseIcon

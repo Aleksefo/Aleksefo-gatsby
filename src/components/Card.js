@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { Card as CardRebass } from 'rebass';
+import styled from 'styled-components'
+import { Card as CardRebass } from 'rebass'
 
 export const CardContainer = styled.div`
   display: grid;
@@ -14,7 +14,7 @@ export const CardContainer = styled.div`
   @media only screen and (max-width: 400px) {
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   }
-`;
+`
 
 export const Card = styled(CardRebass).attrs({
   bg: 'white',
@@ -32,6 +32,6 @@ export const Card = styled(CardRebass).attrs({
     top: -10px;
     box-shadow: 0 12px 16px rgba(0, 0, 0, 0.2);
   }
-`;
+`
 
-export default Card;
+export default Card

@@ -1,4 +1,4 @@
-const colors = require('./colors');
+const colors = require('./colors')
 
 module.exports = {
   name: 'Mate Gatsby Starter',
@@ -8,4 +8,4 @@ module.exports = {
   theme_color: colors.primary,
   display: 'minimal-ui',
   icon: 'media/icon.png',
-};
+}

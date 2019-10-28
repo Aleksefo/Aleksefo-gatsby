@@ -1,11 +1,11 @@
-const spaceImport = require('contentful-import');
-const inquirer = require('inquirer');
-const chalk = require('chalk');
-const path = require('path');
-const { writeFileSync } = require('fs');
-const envfile = require('envfile');
+const spaceImport = require('contentful-import')
+const inquirer = require('inquirer')
+const chalk = require('chalk')
+const path = require('path')
+const { writeFileSync } = require('fs')
+const envfile = require('envfile')
 
-const exportFile = require('./contentful-config.json');
+const exportFile = require('./contentful-config.json')
 
 console.log(`
   To set up this project you need to provide your Space ID
@@ -23,7 +23,7 @@ console.log(`
   The ${chalk.green('Content Preview API Token')}
     will be used to show not published data in your development environment.
   Ready? Let's do it! 🎉
-`);
+`)
 
 const questions = [
   {
@@ -41,23 +41,23 @@ const questions = [
     name: 'managementToken',
     message: 'Your Content Management API access token',
   },
-];
+]
 
 inquirer
   .prompt(questions)
   .then(({ spaceId, deliveryToken, managementToken }) => {
-    console.log('Writing config file...');
+    console.log('Writing config file...')
 
-    const configFilePath = path.resolve(__dirname, '..', '.env');
+    const configFilePath = path.resolve(__dirname, '..', '.env')
     const envData = envfile.stringifySync({
       SPACE_ID: spaceId,
       ACCESS_TOKEN: deliveryToken,
-    });
+    })
 
-    writeFileSync(configFilePath, envData);
-    console.log(`Config file ${chalk.yellow(configFilePath)} written`);
+    writeFileSync(configFilePath, envData)
+    console.log(`Config file ${chalk.yellow(configFilePath)} written`)
 
-    return { spaceId, managementToken };
+    return { spaceId, managementToken }
   })
   .then(({ spaceId, managementToken }) =>
     spaceImport({ spaceId, managementToken, content: exportFile }),
@@ -67,6 +67,6 @@ inquirer
       `All set! You can now run ${chalk.yellow(
         'yarn develop',
       )} to see it in action.`,
-    );
+    )
   })
-  .catch(error => console.error(error));
+  .catch(error => console.error(error))

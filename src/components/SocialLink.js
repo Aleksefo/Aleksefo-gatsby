@@ -1,9 +1,9 @@
-import React from 'react';
-import { Link } from 'rebass';
-import Tippy from '@tippy.js/react';
-import styled from 'styled-components';
-import PropTypes from 'prop-types';
-import FontAwesomeIcon from 'react-fontawesome';
+import React from 'react'
+import { Link } from 'rebass'
+import Tippy from '@tippy.js/react'
+import styled from 'styled-components'
+import PropTypes from 'prop-types'
+import FontAwesomeIcon from 'react-fontawesome'
 
 const IconLink = styled(Link)`
   transition: color 0.5s;
@@ -14,7 +14,7 @@ const IconLink = styled(Link)`
   &:hover {
     color: ${props => props.theme.colors.primaryLight};
   }
-`;
+`
 
 const SocialLink = ({ fontAwesomeIcon, name, url, color }) => (
   <Tippy content={name} placement="bottom" trigger="mouseenter">
@@ -28,13 +28,13 @@ const SocialLink = ({ fontAwesomeIcon, name, url, color }) => (
       <FontAwesomeIcon name={fontAwesomeIcon} />
     </IconLink>
   </Tippy>
-);
+)
 
 SocialLink.propTypes = {
   fontAwesomeIcon: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   url: PropTypes.string.isRequired,
   color: PropTypes.string,
-};
+}
 
-export default SocialLink;
+export default SocialLink
