@@ -106,7 +106,9 @@ const ProjectTag = styled.div`
 const Project = ({
   name,
   description,
-  projectUrl,
+  webUrl,
+  androidUrl,
+  iOSUrl,
   repositoryUrl,
   type,
   publishedDate,
@@ -133,20 +135,42 @@ const Project = ({
               float: 'right',
             }}
           >
-            <Box mx={1} fontSize={5}>
-              <SocialLink
-                name="Check repository"
-                fontAwesomeIcon="github"
-                url={repositoryUrl}
-              />
-            </Box>
-            <Box mx={1} fontSize={5}>
-              <SocialLink
-                name="See project"
-                fontAwesomeIcon="globe"
-                url={projectUrl}
-              />
-            </Box>
+            {repositoryUrl && (
+              <Box mx={1} fontSize={5}>
+                <SocialLink
+                  name="Check repository"
+                  fontAwesomeIcon="github"
+                  url={repositoryUrl}
+                />
+              </Box>
+            )}
+            {webUrl && (
+              <Box mx={1} fontSize={5}>
+                <SocialLink
+                  name="See project"
+                  fontAwesomeIcon="globe"
+                  url={webUrl}
+                />
+              </Box>
+            )}
+            {iOSUrl && (
+              <Box mx={1} fontSize={5}>
+                <SocialLink
+                  name="Get for iOS"
+                  fontAwesomeIcon="apple"
+                  url={iOSUrl}
+                />
+              </Box>
+            )}
+            {androidUrl && (
+              <Box mx={1} fontSize={5}>
+                <SocialLink
+                  name="Get for Android"
+                  fontAwesomeIcon="android"
+                  url={androidUrl}
+                />
+              </Box>
+            )}
           </Flex>
           <ImageSubtitle bg="primary" color="white" y="bottom" x="right" round>
             {type}
@@ -163,7 +187,9 @@ const Project = ({
 Project.propTypes = {
   name: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
-  projectUrl: PropTypes.string.isRequired,
+  webUrl: PropTypes.string.isRequired,
+  androidUrl: PropTypes.string.isRequired,
+  iOSUrl: PropTypes.string.isRequired,
   repositoryUrl: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   publishedDate: PropTypes.string.isRequired,
@@ -186,7 +212,9 @@ const Projects = () => (
               id
               name
               description
-              projectUrl
+              webUrl
+              androidUrl
+              iOSUrl
               repositoryUrl
               publishedDate(formatString: "YYYY")
               type
