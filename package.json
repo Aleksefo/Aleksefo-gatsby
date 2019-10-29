@@ -1,7 +1,7 @@
 {
-  "name": "gatsby-starter-mate",
-  "version": "2.5.1",
-  "description": "Gatsby v2 starter to create a top notch portfolio!",
+  "name": "aleksefo-gatsby",
+  "version": "1.0.0",
+  "description": "Alex Fomushkin's portfolio",
   "main": "index.js",
   "scripts": {
     "fix-medium-plugin": "sed -i' ' 's/\\/latest//g' ./node_modules/gatsby-source-medium/gatsby-node.js",
@@ -11,27 +11,28 @@
     "start": "npm run develop",
     "serve": "npm run build && gatsby serve -p 9000",
     "lint": "eslint ./src",
-    "setup": "node ./bin/setup.js",
     "e2e:open": "cypress open",
     "e2e:ci": "DETERMINISTIC=true start-server-and-test serve http://localhost:9000 'percy exec -- cypress run'"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/EmaSuriano/gatsby-starter-mate.git"
+    "url": "git+https://github.com/Aleksefo/Aleksefo-gatsby.git"
   },
   "keywords": [
-    "gatsby",
-    "starter",
-    "contentful",
-    "PWA",
+    "React Native",
+    "Alex Fomushkin",
+    "Alex Fo",
+    "Aleksei Fomushkin",
+    "Cross-platform",
+    "Mobile App Developer",
+    "Mobile Developer",
+    "Android",
+    "iOS",
     "portfolio"
   ],
-  "author": "Ema Suriano",
+  "author": "Alex Fomushkin",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/EmaSuriano/gatsby-starter-mate/issues"
-  },
-  "homepage": "https://github.com/EmaSuriano/gatsby-starter-mate#readme",
+  "homepage": "https://github.com/Aleksefo/Aleksefo-gatsby#readme",
   "dependencies": {
     "@tippy.js/react": "^2.2.3",
     "contentful": "^7.0.3",
