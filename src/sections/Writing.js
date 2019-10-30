@@ -97,7 +97,8 @@ const parsePost = author => postFromGraphql => {
     date: createdAt,
     text: subtitle,
     image: heroImage.image.src,
-    url: `${MEDIUM_URL}/${author.username}/${uniqueSlug}`,
+    // url: `${MEDIUM_URL}/${author.username}/${uniqueSlug}`,
+    url: `/blog/${uniqueSlug}`,
     Component: Post,
   }
 }
@@ -191,7 +192,7 @@ const Writing = () => (
       return (
         isMediumUserDefined && (
           <Section.Container id="writing" Background={Background}>
-            <Section.Header name="Writing" icon="✍️" label="writing" />
+            <Section.Header name="Blog posts" icon="✍️" label="writing" />
             <CardContainer minWidth="300px">
               {posts.map(({ Component, ...rest }) => (
                 <Fade bottom key={rest.id}>
