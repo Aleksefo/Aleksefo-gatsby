@@ -76,18 +76,27 @@ Post.propTypes = {
 }
 
 const parsePost = author => postFromGraphql => {
-  const { id, uniqueSlug, createdAt, title, virtuals } = postFromGraphql
-  const image =
-    virtuals.previewImage.imageId &&
-    `${MEDIUM_CDN}/${virtuals.previewImage.imageId}`
+  // const { id, uniqueSlug, createdAt, title, virtuals } = postFromGraphql
+  // const image =
+  //   virtuals.previewImage.imageId &&
+  //   `${MEDIUM_CDN}/${virtuals.previewImage.imageId}`
+  const {
+    id,
+    uniqueSlug,
+    createdAt,
+    title,
+    heroImage,
+    subtitle,
+    readingTime,
+  } = postFromGraphql
 
   return {
     id,
     title,
-    time: virtuals.readingTime,
+    time: readingTime,
     date: createdAt,
-    text: virtuals.subtitle,
-    image,
+    text: subtitle,
+    image: heroImage.image.src,
     url: `${MEDIUM_URL}/${author.username}/${uniqueSlug}`,
     Component: Post,
   }
@@ -130,7 +139,7 @@ MorePosts.propTypes = {
   number: PropTypes.number,
 }
 
-const edgeToArray = data => data.edges.map(edge => edge.node)
+// const edgeToArray = data => data.edges.map(edge => edge.node)
 
 const Writing = () => (
   <StaticQuery
@@ -141,20 +150,18 @@ const Writing = () => (
             isMediumUserDefined
           }
         }
-        allMediumPost(limit: 7, sort: { fields: createdAt, order: DESC }) {
-          totalCount
-          edges {
-            node {
-              id
-              uniqueSlug
+        contentfulAbout {
+          articles {
+            title
+            subtitle
+            uniqueSlug
+            readingTime
+            createdAt(formatString: "MMMM Do, YYYY")
+            tags
+            heroImage {
               title
-              createdAt(formatString: "MMM YYYY")
-              virtuals {
-                subtitle
-                readingTime
-                previewImage {
-                  imageId
-                }
+              image: resize(width: 200, quality: 100) {
+                src
               }
             }
           }
@@ -165,10 +172,11 @@ const Writing = () => (
         }
       }
     `}
-    render={({ allMediumPost, site, author }) => {
-      const posts = edgeToArray(allMediumPost).map(parsePost(author))
+    render={({ contentfulAbout, site, author }) => {
+      const posts = contentfulAbout.articles.map(parsePost(author))
 
-      const diffAmountArticles = allMediumPost.totalCount - posts.length
+      const diffAmountArticles =
+        contentfulAbout.articles.totalCount - posts.length
       if (diffAmountArticles > 0) {
         posts.push({
           ...author,
