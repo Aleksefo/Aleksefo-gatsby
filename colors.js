@@ -9,4 +9,7 @@ module.exports = {
   secondary: '#ff4081',
   secondaryLight: '#ff79b0',
   secondaryDark: '#c60055',
+
+  text: '#000000',
+  subtitle: '#919191',
 }

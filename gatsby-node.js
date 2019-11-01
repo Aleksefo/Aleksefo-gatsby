@@ -25,6 +25,7 @@ exports.createPages = ({ graphql, actions }) => {
                 tags
                 heroImage {
                   title
+                  description
                   fluid: resize(width: 200, quality: 100) {
                     src
                   }
