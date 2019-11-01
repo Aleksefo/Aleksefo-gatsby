@@ -11,6 +11,7 @@ exports.createPages = ({ graphql, actions }) => {
         `
           {
             contentfulAbout {
+              name
               articles {
                 title
                 subtitle
@@ -47,6 +48,7 @@ exports.createPages = ({ graphql, actions }) => {
             component: blogPost,
             context: {
               ...post,
+              name: result.data.contentfulAbout.name,
             },
           })
         })
