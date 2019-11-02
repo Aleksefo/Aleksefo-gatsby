@@ -5,6 +5,7 @@ import Layout from '../components/Layout'
 export default props => {
   const {
     name,
+    profile,
     title,
     subtitle,
     createdAt,
@@ -15,7 +16,7 @@ export default props => {
   } = props.pageContext
   return (
     <Layout>
-      {/*<SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />*/}{' '}
+      {/*<SEO title="Home" keywords={[`gatsby`, `application`, `react`]} />*/}
       <Box
         p={[3, 4, 5]}
         fontSize={3}
@@ -47,6 +48,7 @@ export default props => {
         >
           {subtitle}
         </Text>
+        {/*<Image src={profile.fluid.src} variant="avatar" />*/}
         <Text fontSize={[2, 3, 4]} color="subtitle" letterSpacing={'-.02em'}>
           {name} · {createdAt} · {readingTime} min read
         </Text>
@@ -68,7 +70,7 @@ export default props => {
             __html: body.childMarkdownRemark.html,
           }}
         />
-        <Text fontSize={[3, 4, 5]} fontWeight="bold">
+        <Text fontSize={[2, 3, 4]} fontWeight="bold">
           Tags: {tags}
         </Text>
       </Box>
