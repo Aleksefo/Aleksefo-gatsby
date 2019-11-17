@@ -231,7 +231,7 @@ const Projects = () => (
       render={({ contentfulAbout }) => (
         <CardContainer minWidth="350px">
           {contentfulAbout.projects.map((p, i) => (
-            <Fade bottom delay={i * 200} key={p.id}>
+            <Fade bottom delay={i * 10} key={p.id}>
               <Project {...p} />
             </Fade>
           ))}
