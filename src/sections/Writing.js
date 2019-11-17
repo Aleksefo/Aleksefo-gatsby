@@ -76,29 +76,19 @@ Post.propTypes = {
 }
 
 const parsePost = author => postFromGraphql => {
-  // const { id, uniqueSlug, createdAt, title, virtuals } = postFromGraphql
-  // const image =
-  //   virtuals.previewImage.imageId &&
-  //   `${MEDIUM_CDN}/${virtuals.previewImage.imageId}`
-  const {
-    id,
-    uniqueSlug,
-    createdAt,
-    title,
-    heroImage,
-    subtitle,
-    readingTime,
-  } = postFromGraphql
+  const { id, uniqueSlug, createdAt, title, virtuals } = postFromGraphql
+  const image =
+    virtuals.previewImage.imageId &&
+    `${MEDIUM_CDN}/${virtuals.previewImage.imageId}`
 
   return {
     id,
     title,
-    time: readingTime,
+    time: virtuals.readingTime,
     date: createdAt,
-    text: subtitle,
-    image: heroImage.image.src,
-    // url: `${MEDIUM_URL}/${author.username}/${uniqueSlug}`,
-    url: `/blog/${uniqueSlug}`,
+    text: virtuals.subtitle,
+    image,
+    url: `${MEDIUM_URL}/${author.username}/${uniqueSlug}`,
     Component: Post,
   }
 }
@@ -140,7 +130,7 @@ MorePosts.propTypes = {
   number: PropTypes.number,
 }
 
-// const edgeToArray = data => data.edges.map(edge => edge.node)
+const edgeToArray = data => data.edges.map(edge => edge.node)
 
 const Writing = () => (
   <StaticQuery
@@ -151,18 +141,20 @@ const Writing = () => (
             isMediumUserDefined
           }
         }
-        contentfulAbout {
-          articles {
-            title
-            subtitle
-            uniqueSlug
-            readingTime
-            createdAt(formatString: "MMMM Do, YYYY")
-            tags
-            heroImage {
+        allMediumPost(limit: 7, sort: { fields: createdAt, order: DESC }) {
+          totalCount
+          edges {
+            node {
+              id
+              uniqueSlug
               title
-              image: resize(width: 200, quality: 100) {
-                src
+              createdAt(formatString: "MMM DD, YYYY")
+              virtuals {
+                subtitle
+                readingTime
+                previewImage {
+                  imageId
+                }
               }
             }
           }
@@ -173,11 +165,10 @@ const Writing = () => (
         }
       }
     `}
-    render={({ contentfulAbout, site, author }) => {
-      const posts = contentfulAbout.articles.map(parsePost(author))
+    render={({ allMediumPost, site, author }) => {
+      const posts = edgeToArray(allMediumPost).map(parsePost(author))
 
-      const diffAmountArticles =
-        contentfulAbout.articles.totalCount - posts.length
+      const diffAmountArticles = allMediumPost.totalCount - posts.length
       if (diffAmountArticles > 0) {
         posts.push({
           ...author,
