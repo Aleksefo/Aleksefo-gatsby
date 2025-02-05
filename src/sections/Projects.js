@@ -207,7 +207,7 @@ const Projects = () => (
     <StaticQuery
       query={graphql`
         query ProjectsQuery {
-          contentfulAbout {
+          contentfulAbout (order: [publishedDate_DESC]) {
             projects {
               id
               name
