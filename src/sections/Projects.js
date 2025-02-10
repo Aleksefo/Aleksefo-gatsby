@@ -202,7 +202,7 @@ Project.propTypes = {
 }
 
 function order(a, b) {
-  return new Date(b.date) - new Date(a.date);
+  return new Date(b.date) - new Date(a.date)
 }
 const Projects = () => (
   <Section.Container id="projects" Background={Background}>
@@ -210,7 +210,7 @@ const Projects = () => (
     <StaticQuery
       query={graphql`
         query ProjectsQuery {
-          contentfulAbout {
+          contentfulAbout(sort: { fields: publishedDate, order: DESC }) {
             projects {
               id
               name
