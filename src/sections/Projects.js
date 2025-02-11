@@ -202,7 +202,7 @@ Project.propTypes = {
 }
 
 function order(a, b) {
-  return new Date(b.date) - new Date(a.date)
+  return new Date(b.date) - new Date(a.date);
 }
 const Projects = () => (
   <Section.Container id="projects" Background={Background}>
@@ -210,7 +210,7 @@ const Projects = () => (
     <StaticQuery
       query={graphql`
         query ProjectsQuery {
-          contentfulAbout(sort: { fields: publishedDate, order: DESC }) {
+          contentfulAbout {
             projects {
               id
               name
@@ -231,15 +231,17 @@ const Projects = () => (
           }
         }
       `}
-      render={({ contentfulAbout }) => (
-        <CardContainer minWidth="350px">
-          {contentfulAbout.projects.sort(order).map((p, i) => (
+      render={({ contentfulAbout }) => {
+        let projectsSorted = contentfulAbout.projects.sort(order)
+        return <CardContainer minWidth="350px">
+          {projectsSorted.map((p, i) => (
             <Fade bottom delay={i * 10} key={p.id}>
               <Project {...p} />
             </Fade>
           ))}
         </CardContainer>
-      )}
+      }
+      }
     />
   </Section.Container>
 )
