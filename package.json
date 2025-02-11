@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "fix-medium-plugin": "sed -i' ' 's/\\/latest//g' ./node_modules/gatsby-source-medium/gatsby-node.js",
-    "prepare": "npm run fix-medium-plugin && gatsby clean && curl -X POST http://localhost:8000/__refresh",
+    "prepare": "npm run fix-medium-plugin && gatsby clean",
     "build": "npm run prepare && gatsby build",
     "develop": "npm run prepare && gatsby develop",
     "start": "npm run develop",
