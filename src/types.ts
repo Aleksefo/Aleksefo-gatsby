@@ -16,6 +16,8 @@ export type Favicon = {
 export type Project = {
   name: string
   description: string
+  androidUrl: string
+  iOsUrl: string
   homepage: string
   repository: string
   type: string

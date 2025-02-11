@@ -15,11 +15,18 @@ const Projects = () => {
       <Section.Header name={SECTION.projects} icon="💻" label="notebook" />
 
       <CardContainer minWidth="350px">
-        <Fade direction="down" cascade damping={0.5} triggerOnce>
-          {projects.map((p, i) => (
+        {projects.map((p, i) => (
+          <Fade
+            direction="down"
+            cascade
+            key={i}
+            damping={0.1}
+            triggerOnce
+            delay={i * 10}
+          >
             <Project {...p} key={i} />
-          ))}
-        </Fade>
+          </Fade>
+        ))}
       </CardContainer>
     </Section.Container>
   )

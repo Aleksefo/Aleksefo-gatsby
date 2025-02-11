@@ -2,6 +2,8 @@ import {
   faMedium,
   faLinkedinIn,
   faGithub,
+  faAndroid,
+  faApple,
 } from '@fortawesome/free-brands-svg-icons'
 import {
   faGlobe,
@@ -16,4 +18,6 @@ export const ICONS = [
   faGlobe,
   faEnvelope,
   faCoffee,
+  faAndroid,
+  faApple,
 ]

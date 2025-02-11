@@ -12,6 +12,8 @@ type Props = ProjectType
 const Project = ({
   name,
   description,
+  androidUrl,
+  iOsUrl,
   homepage,
   repository,
   type,
@@ -40,12 +42,30 @@ const Project = ({
               float: 'right',
             }}
           >
-            <Box mx={1} fontSize={4}>
-              <SocialLink name="Repository" icon="github" url={repository} />
-            </Box>
-            <Box mx={1} fontSize={4}>
-              <SocialLink name="Homepage" icon="globe" url={homepage} />
-            </Box>
+            {repository && (
+              <Box mx={1} fontSize={4}>
+                <SocialLink name="Repository" icon="github" url={repository} />
+              </Box>
+            )}
+            {homepage && (
+              <Box mx={1} fontSize={4}>
+                <SocialLink name="Homepage" icon="globe" url={homepage} />
+              </Box>
+            )}
+            {iOsUrl && (
+              <Box mx={1} fontSize={4}>
+                <SocialLink name="Get for iOS" icon="apple" url={iOsUrl} />
+              </Box>
+            )}
+            {androidUrl && (
+              <Box mx={1} fontSize={4}>
+                <SocialLink
+                  name="Get for Android"
+                  icon="android"
+                  url={androidUrl}
+                />
+              </Box>
+            )}
           </Flex>
           <ImageLabel
             bg="primary"
