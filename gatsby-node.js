@@ -1,64 +1,17 @@
-const Promise = require('bluebird')
-const path = require('path')
+const gatsbySourceMedium = require('gatsby-source-medium/gatsby-node');
+const { createClient } = require('contentful');
 
-exports.createPages = ({ graphql, actions }) => {
-  const { createPage } = actions
+const getAbout = (entry) => entry.sys.contentType.sys.id === 'about';
 
-  return new Promise((resolve, reject) => {
-    const blogPost = path.resolve('./src/templates/blog-post.js')
-    resolve(
-      graphql(
-        `
-          {
-            contentfulAbout {
-              name
-              profile {
-                fluid {
-                  src
-                }
-              }
-              articles {
-                title
-                subtitle
-                uniqueSlug
-                readingTime
-                createdAt(formatString: "MMMM Do, YYYY")
-                body {
-                  childMarkdownRemark {
-                    html
-                  }
-                }
-                tags
-                heroImage {
-                  title
-                  description
-                  fluid: resize(width: 200, quality: 100) {
-                    src
-                  }
-                }
-              }
-            }
-          }
-        `,
-      ).then(result => {
-        if (result.errors) {
-          console.log(result.errors)
-          reject(result.errors)
-        }
+exports.sourceNodes = async (gatsbyConfig, themeOptions) => {
+  const client = createClient({
+    space: process.env.SPACE_ID,
+    accessToken: process.env.ACCESS_TOKEN,
+  });
 
-        const posts = result.data.contentfulAbout.articles
-        posts.forEach((post, index) => {
-          createPage({
-            path: `/blog/${post.uniqueSlug}/`,
-            component: blogPost,
-            context: {
-              ...post,
-              name: result.data.contentfulAbout.name,
-              profile: result.data.contentfulAbout.profile,
-            },
-          })
-        })
-      }),
-    )
-  })
-}
+  const { items } = await client.getEntries();
+  const about = items.find(getAbout);
+  const { mediumUser = '@medium' } = about.fields;
+
+  await gatsbySourceMedium.sourceNodes(gatsbyConfig, { username: mediumUser });
+};
