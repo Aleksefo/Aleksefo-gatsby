@@ -1,6 +1,6 @@
 import {
   faMedium,
-  faLinkedinIn,
+  faLinkedin,
   faGithub,
   faAndroid,
   faApple,
@@ -13,7 +13,7 @@ import {
 
 export const ICONS = [
   faMedium,
-  faLinkedinIn,
+  faLinkedin,
   faGithub,
   faGlobe,
   faEnvelope,
