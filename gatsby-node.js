@@ -13,5 +13,13 @@ exports.sourceNodes = async (gatsbyConfig, themeOptions) => {
   const about = items.find(getAbout);
   const { mediumUser = '@medium' } = about.fields;
 
-  await gatsbySourceMedium.sourceNodes(gatsbyConfig, { username: mediumUser });
+  // Try to fetch Medium posts, but continue build if it fails due to Cloudflare protection
+  try {
+    await gatsbySourceMedium.sourceNodes(gatsbyConfig, { username: mediumUser });
+    console.log('✅ Successfully fetched Medium posts');
+  } catch (error) {
+    console.warn('⚠️  Failed to fetch Medium posts (likely due to Cloudflare protection):', error.message);
+    console.warn('   Building without Medium posts...');
+    // Continue build without Medium posts
+  }
 };
