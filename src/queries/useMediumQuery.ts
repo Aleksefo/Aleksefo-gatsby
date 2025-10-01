@@ -36,22 +36,24 @@ type Response = {
 const EMPTY_RESPONSE = { author: null, posts: [] }
 
 export const useMediumQuery = (): Response => {
-  const { mediumUser } = useStaticQuery<QueryResponse>(graphql`
+  const data = useStaticQuery<any>(graphql`
     query MediumPostQuery {
-      mediumUser {
-        id
-        name
-        username
-        posts {
+      allMediumUser {
+        nodes {
           id
-          uniqueSlug
-          title
-          createdAt(formatString: "MMM YYYY")
-          virtuals {
-            subtitle
-            readingTime
-            previewImage {
-              imageId
+          name
+          username
+          posts {
+            id
+            uniqueSlug
+            title
+            createdAt
+            virtuals {
+              subtitle
+              readingTime
+              previewImage {
+                imageId
+              }
             }
           }
         }
@@ -59,20 +61,22 @@ export const useMediumQuery = (): Response => {
     }
   `)
 
+  const mediumUser = data.allMediumUser?.nodes?.[0]
+
   // Handle case where mediumUser is null/undefined
   if (!mediumUser) {
-    console.warn('No mediumUser found in GraphQL data')
     return EMPTY_RESPONSE
   }
 
   const { posts: rawPosts, ...author } = mediumUser
 
   // Handle case where author username is the default
-  if (author.username === '@medium') return EMPTY_RESPONSE
+  if (author.username === '@medium') {
+    return EMPTY_RESPONSE
+  }
 
   // Handle case where rawPosts is null/undefined
   if (!rawPosts || !Array.isArray(rawPosts)) {
-    console.warn('No posts found for mediumUser:', author.username)
     return {
       posts: [],
       author,
@@ -83,9 +87,9 @@ export const useMediumQuery = (): Response => {
     title: p.title,
     text: p.virtuals.subtitle,
     cover: p.virtuals.previewImage.imageId
-      ? (p.virtuals.previewImage.imageId.startsWith('http')
-         ? p.virtuals.previewImage.imageId
-         : `${MEDIUM_CDN}/${p.virtuals.previewImage.imageId}`)
+      ? p.virtuals.previewImage.imageId.startsWith('http')
+        ? p.virtuals.previewImage.imageId
+        : `${MEDIUM_CDN}/${p.virtuals.previewImage.imageId}`
       : '',
     url: `${MEDIUM_URL}/@${mediumUser.username}/${p.uniqueSlug}`,
     date: p.createdAt,

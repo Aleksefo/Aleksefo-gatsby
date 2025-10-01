@@ -12,7 +12,7 @@ exports.createSchemaCustomization = ({ actions }) => {
       id: ID!
       username: String!
       name: String!
-      posts: [MediumPost] @link(by: "parent.id")
+      posts: [MediumPost] @link(by: "parent.id", from: "id")
     }
 
     type MediumPost implements Node {
@@ -62,15 +62,6 @@ const estimateReadingTime = (content) => {
 
   // Average reading speed is ~200 words per minute
   return Math.max(1, Math.ceil(words / 200))
-}
-
-// Helper function to format date
-const formatDate = (dateString) => {
-  const date = new Date(dateString)
-  return date.toLocaleDateString('en-US', {
-    month: 'short',
-    year: 'numeric',
-  })
 }
 
 // Helper function to extract unique slug from Medium URL
@@ -143,15 +134,13 @@ exports.sourceNodes = async ({
         item['content:encoded'] || item.content || item.description || ''
       const previewImage = extractImageFromContent(content, item.title)
       const readingTime = estimateReadingTime(content)
-      const formattedDate = formatDate(item.pubDate)
-
       const postNodeId = createNodeId(`MediumPost-${uniqueSlug}`)
 
       return {
         id: postNodeId,
         uniqueSlug,
         title: item.title,
-        createdAt: formattedDate,
+        createdAt: new Date(item.pubDate),
         virtuals: {
           subtitle: item.description || item.contentSnippet || item.title || '',
           readingTime: readingTime || 1,
