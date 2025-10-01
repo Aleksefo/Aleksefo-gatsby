@@ -59,14 +59,34 @@ export const useMediumQuery = (): Response => {
     }
   `)
 
+  // Handle case where mediumUser is null/undefined
+  if (!mediumUser) {
+    console.warn('No mediumUser found in GraphQL data')
+    return EMPTY_RESPONSE
+  }
+
   const { posts: rawPosts, ...author } = mediumUser
 
+  // Handle case where author username is the default
   if (author.username === '@medium') return EMPTY_RESPONSE
+
+  // Handle case where rawPosts is null/undefined
+  if (!rawPosts || !Array.isArray(rawPosts)) {
+    console.warn('No posts found for mediumUser:', author.username)
+    return {
+      posts: [],
+      author,
+    }
+  }
 
   const posts = rawPosts.map((p) => ({
     title: p.title,
     text: p.virtuals.subtitle,
-    cover: `${MEDIUM_CDN}/${p.virtuals.previewImage.imageId}`,
+    cover: p.virtuals.previewImage.imageId
+      ? (p.virtuals.previewImage.imageId.startsWith('http')
+         ? p.virtuals.previewImage.imageId
+         : `${MEDIUM_CDN}/${p.virtuals.previewImage.imageId}`)
+      : '',
     url: `${MEDIUM_URL}/@${mediumUser.username}/${p.uniqueSlug}`,
     date: p.createdAt,
     time: p.virtuals.readingTime,
